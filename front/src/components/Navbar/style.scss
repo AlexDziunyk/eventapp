@@ -1,0 +1,62 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .navbar__panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .navbar__item {
+    cursor: pointer;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+
+  }
+
+  .navbar__login {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 12px;
+    transition: 0.3s;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    text-transform: uppercase;
+  }
+
+  .navbar__signup {
+    cursor: pointer;
+    border-radius: 4px;
+    background: #E2CEBC;
+    padding: 12px;
+    transition: 0.3s;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    /* 142.857% */
+    text-transform: uppercase;
+  }
+
+  .navbar__login:hover {
+    background: #EDE3DA;
+  }
+
+  .navbar__signup:hover {
+    background: #EDE3DA;
+  }
+
+
+
+
+}
