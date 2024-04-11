@@ -5,12 +5,14 @@
   text-align: center;
 } */
 
-
+body {
+  margin: 0;
+}
 
 .app {
   max-width: 1400px;
   width: 100%;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   margin: auto;
   box-sizing: border-box;
 }

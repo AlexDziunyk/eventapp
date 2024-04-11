@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from "react-router-dom";
 import './style.scss';
 
 const Navbar = () => {
@@ -6,9 +7,9 @@ const Navbar = () => {
     <div className='navbar'>
       <h1>uevents</h1>
       <div className='navbar__panel'>
-        <div className='navbar__item'>HOME</div>
-        <div className='navbar__item'>FORMATS</div>
-        <div className='navbar__item'>THEMES</div>
+        <NavLink to="/" className='navbar__item'>HOME</NavLink>
+        <NavLink to="/formats" className='navbar__item'>FORMATS</NavLink>
+        <NavLink to="/themes" className='navbar__item'>THEMES</NavLink>
       </div>
       <div className='navbar__panel'>
         <div className='navbar__login'>LOGIN</div>

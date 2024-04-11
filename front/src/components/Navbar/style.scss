@@ -13,12 +13,24 @@
 
   .navbar__item {
     cursor: pointer;
+    color: #3C3A36;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
     text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 12px;
+    transition: 0.3s;
+  }
 
+  .navbar__item:hover {
+    background: #EDE3DA;
+  }
+
+  .active {
+    background: #E2CEBC;
   }
 
   .navbar__login {
@@ -30,7 +42,6 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
-    /* 142.857% */
     text-transform: uppercase;
   }
 
