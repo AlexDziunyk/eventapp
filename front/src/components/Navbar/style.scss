@@ -3,6 +3,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 16px 0px;
+
+  .logo {
+    cursor: pointer;
+    font-size: 40px;
+    text-decoration: none;
+    color: #3C3A36;
+    font-weight: 700;
+  }
 
   .navbar__panel {
     display: flex;

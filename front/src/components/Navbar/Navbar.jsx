@@ -1,11 +1,11 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import './style.scss';
 
 const Navbar = () => {
   return (
     <div className='navbar'>
-      <h1>uevents</h1>
+      <Link to="/" className='logo'>uevents</Link>
       <div className='navbar__panel'>
         <NavLink to="/" className='navbar__item'>HOME</NavLink>
         <NavLink to="/formats" className='navbar__item'>FORMATS</NavLink>
