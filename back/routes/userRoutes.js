@@ -4,6 +4,6 @@ const router = express.Router();
 const { createUser, addEventToUser } = require('../controllers/userController');
 
 router.post('/createUser', createUser);
-router.delete('/addEventToUser', addEventToUser);
+router.put('/addEventToUser', addEventToUser);
 
 module.exports = router;
