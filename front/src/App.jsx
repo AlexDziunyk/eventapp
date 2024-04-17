@@ -13,6 +13,8 @@ import RootPage from './pages/RootPage/RootPage';
 import FormatItem from './components/FormatItem/FormatItem';
 import FormatsPage from './pages/FormatsPage/FormatsPage';
 import ThemesPage from './pages/ThemesPage/ThemesPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
         <Route element={<HomePage />} index ></Route>
         <Route element={<FormatsPage />} path='formats'></Route>
         <Route element={<ThemesPage />} path='themes'></Route>
+        <Route element={<LoginPage />} path='login'></Route>
+        <Route element={<SignUpPage />} path='signup'></Route>
       </Route>
     )
   );

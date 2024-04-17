@@ -12,8 +12,8 @@ const Navbar = () => {
         <NavLink to="/themes" className='navbar__item'>THEMES</NavLink>
       </div>
       <div className='navbar__panel'>
-        <div className='navbar__login'>LOGIN</div>
-        <div className='navbar__signup'>SIGNUP</div>
+        <NavLink to="/login" className='navbar__login'>LOGIN</NavLink>
+        <NavLink to="/signup" className='navbar__signup'>SIGNUP</NavLink>
       </div>
     </div>
   )
