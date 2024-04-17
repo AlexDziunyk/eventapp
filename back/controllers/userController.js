@@ -11,17 +11,15 @@ const createUser = async (req, res) => {
       events: []
     });
 
-    await user.save()
-      .then(result => {
-        console.log(result);
-      })
-      .catch(e => {
-        console.log(e);
-      })
+    const result = await user.save();
 
-    return;
+    return res.status(200).json({ data: result, message: "User successfully created!" });
+
   } catch (error) {
-    throw error;
+    return res.status(500).json({
+      message: "Failed to create a user",
+      error: error.message
+    });
   }
 }
 
