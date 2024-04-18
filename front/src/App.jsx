@@ -15,6 +15,7 @@ import FormatsPage from './pages/FormatsPage/FormatsPage';
 import ThemesPage from './pages/ThemesPage/ThemesPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route element={<ThemesPage />} path='themes'></Route>
         <Route element={<LoginPage />} path='login'></Route>
         <Route element={<SignUpPage />} path='signup'></Route>
+        <Route element={<ProfilePage />} path='profile'></Route>
       </Route>
     )
   );

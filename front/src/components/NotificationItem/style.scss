@@ -1,0 +1,22 @@
+.notification {
+  padding: 16px;
+  border-radius: 4px;
+  background: #E2CEBC;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .notification__button {
+    cursor: pointer;
+    border-radius: 4px;
+    background: #EDE3DA;
+    padding: 12px;
+    transition: 0.3s;
+  }
+
+  .notification__button:hover {
+    background: #fff6ed;
+  }
+
+}

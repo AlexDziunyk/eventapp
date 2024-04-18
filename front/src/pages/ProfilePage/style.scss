@@ -1,0 +1,39 @@
+.profile {
+  .profile__bar {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    padding: 10px 0px;
+    margin: 20px 0px;
+    border-bottom: 1px solid grey;
+  }
+
+  .profile__bar_item {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .active {
+    font-weight: 700;
+  }
+
+  .profile__events {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .profile__tickets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .profile__notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+}
