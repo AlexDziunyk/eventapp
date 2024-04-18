@@ -16,6 +16,7 @@ import ThemesPage from './pages/ThemesPage/ThemesPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import CreateEventPage from './pages/CreateEventPage/CreateEventPage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route element={<LoginPage />} path='login'></Route>
         <Route element={<SignUpPage />} path='signup'></Route>
         <Route element={<ProfilePage />} path='profile'></Route>
+        <Route element={<CreateEventPage />} path='create'></Route>
       </Route>
     )
   );

@@ -3,18 +3,20 @@
   color: #3C3A36;
 }
 
-input {
+input,
+textarea {
+  font-family: "Inter", sans-serif;
   border-radius: 12px;
   font-size: 18px;
   outline: none;
   border: 1px solid #CFCED3;
   background: #fff6ed;
   padding: 20px;
-  /* width: 100%; */
   transition: 0.3s;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #47434D;
   font-size: 18px;
   font-style: normal;
@@ -22,7 +24,8 @@ input::placeholder {
   line-height: 20px;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   border: 1px solid #090909;
 
 }

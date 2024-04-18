@@ -11,6 +11,7 @@ const Navbar = () => {
         <NavLink to="/formats" className='navbar__item'>FORMATS</NavLink>
         <NavLink to="/themes" className='navbar__item'>THEMES</NavLink>
         <NavLink to="/profile" className='navbar__item'>Profile</NavLink>
+        <NavLink to="/create" className='navbar__item'>Create Event</NavLink>
       </div>
       <div className='navbar__panel'>
         <NavLink to="/login" className='navbar__login'>LOGIN</NavLink>
