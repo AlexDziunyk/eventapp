@@ -1,20 +1,20 @@
 import './style.scss';
 
-const MainEventItem = () => {
+const MainEventItem = ({ id, author, title, date, description, format, theme, price }) => {
   return (
     <div className='main-event-item__wrapper'>
-      <h1>Name</h1>
+      <h1>{title}</h1>
       <div className='main-event-item'>
         <div className='column-one'>
-          <p className='main-event-item__description'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptatem facere dignissimos reiciendis quo eligendi saepe. Nesciunt ea esse, quisquam necessitatibus aut recusandae obcaecati, distinctio labore tenetur omnis blanditiis ipsa!</p>
+          <p className='main-event-item__description'>{description}</p>
         </div>
         <div className='column-two'>
-          <p>Format: <b>Conference</b></p>
-          <p>Theme: <b>Business</b></p>
+          <p>Format: <b>{format}</b></p>
+          <p>Theme: <b>{theme}</b></p>
         </div>
         <div className='column-three'>
           <p className='learn__more'>Learn more</p>
-          <p>Price: <b>25$</b></p>
+          <p>Price: <b>{price}</b></p>
         </div>
       </div>
     </div>

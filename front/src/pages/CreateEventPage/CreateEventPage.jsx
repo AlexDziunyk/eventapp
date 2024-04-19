@@ -17,6 +17,7 @@ const CreateEventPage = () => {
   const [error, setError] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [fileImage, setFileImage] = useState(null);
+  const [price, setPrice] = useState(0);
 
   const inputRef = useRef(null)
   const navigate = useNavigate()
@@ -35,6 +36,7 @@ const CreateEventPage = () => {
       formData.append('login', "login");
       formData.append('theme', theme);
       formData.append('format', format);
+      formData.append('price', price + "$");
 
       const response = await axios.post('/events/createEvent', formData)
 
@@ -107,8 +109,12 @@ const CreateEventPage = () => {
           </div>}
         </div>
       </div>
+      <div className='input__container'>
+        <p className='input__label'>Price</p>
+        <input onChange={(evt) => setPrice(evt.target.value)} placeholder='Type here the price' type='number'></input>
+      </div>
       <p className='error__text'>{error}</p>
-      <button onClick={handleCreateEvent} disabled={chosenPlace === "" || lat === "" || lng === "" || title === "" || description === "" || date === ""}>Create event</button>
+      <button onClick={handleCreateEvent} disabled={price <= 0 || chosenPlace === "" || lat === "" || lng === "" || title === "" || description === "" || date === ""}>Create event</button>
 
     </div>
   )

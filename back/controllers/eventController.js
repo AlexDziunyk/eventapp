@@ -2,7 +2,7 @@ const User = require('../models/user');
 const { Event } = require('../models/event');
 
 const createEvent = async (req, res) => {
-  const { login, title, date, lat, lng, placeName, description, image, format, theme } = req.body;
+  const { login, price, title, date, lat, lng, placeName, description, image, format, theme } = req.body;
 
   try {
 
@@ -19,13 +19,14 @@ const createEvent = async (req, res) => {
       image: filePath,
       format: format,
       theme: theme,
+      price: price,
       users: []
     });
 
     const result = await event.save();
 
     return res.status(201).json({ data: result, message: "Event successfully created!" });
-    
+
   } catch (error) {
     return res.status(500).json({
       message: "Failed to create an event",
@@ -48,6 +49,16 @@ const deleteEventById = async (req, res) => {
 
 }
 
+const getAllEvents = async (req, res) => {
+  try {
+    const events = await Event.find();
+
+    return res.status(200).json({ result: events, message: "Events were successfully loaded!" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message, message: "Something went wrong!" });
+  }
+}
 
 
-module.exports = { createEvent, deleteEventById };
+
+module.exports = { createEvent, deleteEventById, getAllEvents };

@@ -18,6 +18,7 @@ const eventSchema = new Schema({
   image: String,
   format: String,
   theme: String,
+  price: String,
   users: [String]
 
 }, { timestamps: true })
