@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
 
     const result = await user.save();
 
-    return res.status(200).json({ data: result, message: "User successfully created!" });
+    return res.status(201).json({ data: result, message: "User successfully created!" });
 
   } catch (error) {
     return res.status(500).json({

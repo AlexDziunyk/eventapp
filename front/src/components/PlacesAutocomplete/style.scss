@@ -1,0 +1,21 @@
+.places {
+
+  .places__input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .places__list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .places__item {
+    background: #EDE3DA;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+}

@@ -10,9 +10,14 @@ const eventSchema = new Schema({
     type: String,
     required: true
   },
-  location: String,
+  lat: String,
+  lng: String,
+  placeName: String,
   description: String,
   author: String,
+  image: String,
+  format: String,
+  theme: String,
   users: [String]
 
 }, { timestamps: true })
