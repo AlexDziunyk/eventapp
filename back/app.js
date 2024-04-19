@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const userRoutes = require('./routes/userRoutes');
 const eventRoutes = require('./routes/eventRoutes');
@@ -10,6 +11,7 @@ const mongoDB = "mongodb+srv://alexdziunyk:Bop0R4wjSErnpvTc@cluster1.wfjlnqc.mon
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(mongoDB)
   .then(result => console.log("connected to db"))

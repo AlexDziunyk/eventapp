@@ -5,6 +5,9 @@ const createEvent = async (req, res) => {
   const { login, title, date, lat, lng, placeName, description, image, format, theme } = req.body;
 
   try {
+
+    const filePath = req.file.path;
+
     const event = new Event({
       title: title,
       date: date,
@@ -13,7 +16,7 @@ const createEvent = async (req, res) => {
       placeName: placeName,
       description: description,
       author: login,
-      image: image,
+      image: filePath,
       format: format,
       theme: theme,
       users: []

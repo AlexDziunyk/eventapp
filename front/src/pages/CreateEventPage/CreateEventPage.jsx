@@ -15,17 +15,29 @@ const CreateEventPage = () => {
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [error, setError] = useState("");
-  const [image64, setImage64] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [fileImage, setFileImage] = useState(null);
 
   const inputRef = useRef(null)
   const navigate = useNavigate()
 
   const handleCreateEvent = async () => {
     try {
-      const response = await axios.post('/events/createEvent', { title, date, lat, lng, placeName: chosenPlace, description, login: "login", image: image64, theme, format })
 
-      console.log("response", response)
+      const formData = new FormData();
+      formData.append('image', fileImage);
+      formData.append('title', title);
+      formData.append('date', date);
+      formData.append('lat', lat);
+      formData.append('lng', lng);
+      formData.append('placeName', chosenPlace);
+      formData.append('description', description);
+      formData.append('login', "login");
+      formData.append('theme', theme);
+      formData.append('format', format);
+
+      const response = await axios.post('/events/createEvent', formData)
+
 
       if (response.status === 201) {
         navigate("/");
@@ -41,13 +53,7 @@ const CreateEventPage = () => {
   const handleInputChange = (evt) => {
     if (evt.target.files && evt.target.files.length > 0) {
       setImageUrl(URL.createObjectURL(evt.target.files[0]))
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage64(reader.result);
-      };
-
-      reader.readAsDataURL(evt.target.files[0]);
+      setFileImage(evt.target.files[0]);
     }
   }
 
