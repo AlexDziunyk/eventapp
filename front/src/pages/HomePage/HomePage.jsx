@@ -25,7 +25,6 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       {/* <img src='http://localhost:3001/uploads/image-1713567277650'></img> */}
-      <Map />
       <p className='error__text'>{error}</p>
       {events.length === 0 && <p>No events yet</p>}
       {events.length > 0 && events.map(({_id, author, title,  date, description, format, theme, price}) => {
