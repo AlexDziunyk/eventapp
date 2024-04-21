@@ -1,9 +1,5 @@
 import { APIProvider, Map as GoogleMap, AdvancedMarker } from '@vis.gl/react-google-maps';
-import marker from '../../static/img/marker.png';
 
-const Marker = () => <div>
-  <img width={20} height={20} src={marker} alt='marker'></img>
-</div>;
 
 const Map = () => {
 
