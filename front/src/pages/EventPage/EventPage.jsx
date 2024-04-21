@@ -45,7 +45,7 @@ const EventPage = () => {
               <p className='event__date'>Date: <b>{event.date}</b></p>
               <div className='event__bottom'>
                 <h3>Description:</h3>
-                <p className='event__description'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem itaque consequuntur temporibus maiores rerum magni quisquam asperiores. Minus, ducimus tenetur, ex beatae quasi animi laudantium ullam omnis neque nemo veniam!</p>
+                <p className='event__description'>{event.description}</p>
               </div>
             </div>
             <div className='event__price_info'>
