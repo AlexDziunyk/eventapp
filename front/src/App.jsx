@@ -17,6 +17,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CreateEventPage from './pages/CreateEventPage/CreateEventPage';
+import EventPage from './pages/EventPage/EventPage';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
         <Route element={<SignUpPage />} path='signup'></Route>
         <Route element={<ProfilePage />} path='profile'></Route>
         <Route element={<CreateEventPage />} path='create'></Route>
+        <Route element={<EventPage />} path='events/:id'></Route>
       </Route>
     )
   );

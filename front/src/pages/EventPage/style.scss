@@ -1,0 +1,134 @@
+.event {
+  box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
+  border-radius: 4px;
+  border: 1px #F5F4F5;
+  background: #fff6ed;
+  padding: 40px;
+
+
+
+  .event__top {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .event__col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .event__price {
+      font-size: 30px;
+
+      span {
+        font-weight: 700;
+      }
+    }
+
+    .event__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 10px;
+
+
+      .event__title {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .event__theme,
+      .event__format,
+      .event__date {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .event__img {
+    max-width: 500px;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .event__bottom {
+    margin-top: 10px;
+
+    .event__description {
+      font-size: 18px;
+    }
+
+  }
+
+  .event__price_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .event__map {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .event__modes {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+
+    .event__modes_button {
+      cursor: pointer;
+      color: #3C3A36;
+      background-color: #EDE3DA;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      padding: 12px;
+      transition: 0.3s;
+
+    }
+
+
+
+  }
+
+  .event__mode__items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+
+  .event__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .event__notification {
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #EDE3DA;
+    padding: 4px;
+  }
+
+  .button__active {
+    background-color: #E2CEBC;
+  }
+
+
+
+}

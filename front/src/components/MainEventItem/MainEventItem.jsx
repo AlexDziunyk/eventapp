@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 const MainEventItem = ({ id, author, title, date, description, format, theme, price }) => {
@@ -13,7 +14,7 @@ const MainEventItem = ({ id, author, title, date, description, format, theme, pr
           <p>Theme: <b>{theme}</b></p>
         </div>
         <div className='column-three'>
-          <p className='learn__more'>Learn more</p>
+          <Link to={`/events/${id}`} className='learn__more'>Learn more</Link>
           <p>Price: <b>{price}</b></p>
         </div>
       </div>

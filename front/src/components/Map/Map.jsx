@@ -1,23 +1,24 @@
 import { APIProvider, Map as GoogleMap, AdvancedMarker } from '@vis.gl/react-google-maps';
 
 
-const Map = () => {
+const Map = ({ lat, lng }) => {
 
   const position = {
-    lat: 10.99835602,
-    lng: 77.01502627
+    lat: lat,
+    lng: lng
   }
 
   return (
-    <div >
+    <div>
       <APIProvider apiKey={"AIzaSyCaHsRUO7Zrpc9UrisK-qkI0yyoLbt1lbk"}>
         <GoogleMap
-          style={{ width: '100%', height: '600px' }}
+          scrollwheel={false}
+          style={{ width: '100%', height: '600px', borderRadius: '4px' }}
           mapId={"8404e0bab090a21f"}
           defaultCenter={position}
           defaultZoom={16}
           gestureHandling={'greedy'}
-          disableDefaultUI={true}>
+        >
           <AdvancedMarker position={position}></AdvancedMarker>
         </GoogleMap>
       </APIProvider>

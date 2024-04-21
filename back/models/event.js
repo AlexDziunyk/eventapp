@@ -10,8 +10,8 @@ const eventSchema = new Schema({
     type: String,
     required: true
   },
-  lat: String,
-  lng: String,
+  lat: Number,
+  lng: Number,
   placeName: String,
   description: String,
   author: String,

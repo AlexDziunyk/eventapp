@@ -27,10 +27,10 @@ const HomePage = () => {
       {/* <img src='http://localhost:3001/uploads/image-1713567277650'></img> */}
       <p className='error__text'>{error}</p>
       {events.length === 0 && <p>No events yet</p>}
-      {events.length > 0 && events.map(({_id, author, title,  date, description, format, theme, price}) => {
+      {events.length > 0 && events.map(({ _id, author, title, date, description, format, theme, price }) => {
         return <MainEventItem key={_id} id={_id} price={price} title={title} author={author} date={date} description={description} format={format} theme={theme} />
       })}
-      
+
     </div>
   )
 }

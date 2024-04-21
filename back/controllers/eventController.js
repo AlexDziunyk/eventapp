@@ -59,6 +59,17 @@ const getAllEvents = async (req, res) => {
   }
 }
 
+const getEventById = async (req, res) => {
+  try {
+    const { eventId } = req.params;
+    const event = await Event.findById(eventId);
+    
+    return res.status(200).json({ result: event, message: "Event successfully loaded!" });
+  } catch (error) {
+    return res.status(500).json({ error: error.message, message: "Such event wasn't found" });
+  }
+}
 
 
-module.exports = { createEvent, deleteEventById, getAllEvents };
+
+module.exports = { createEvent, deleteEventById, getAllEvents, getEventById };
