@@ -8,8 +8,8 @@ const Navbar = () => {
       <Link to="/" className='logo'>uevents</Link>
       <div className='navbar__panel'>
         <NavLink to="/" className='navbar__item'>HOME</NavLink>
-        <NavLink to="/formats" className='navbar__item'>FORMATS</NavLink>
-        <NavLink to="/themes" className='navbar__item'>THEMES</NavLink>
+        {/* <NavLink to="/formats" className='navbar__item'>FORMATS</NavLink>
+        <NavLink to="/themes" className='navbar__item'>THEMES</NavLink> */}
         <NavLink to="/profile" className='navbar__item'>Profile</NavLink>
         <NavLink to="/create" className='navbar__item'>Create Event</NavLink>
       </div>
