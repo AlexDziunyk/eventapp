@@ -5,8 +5,6 @@
   background: #fff6ed;
   padding: 40px;
 
-
-
   .event__top {
     display: flex;
     flex-direction: row;
@@ -131,6 +129,25 @@
 
   .notif_active {
     background-color: #E2CEBC;
+  }
+
+  .comments {
+    margin-top: 20px;
+  }
+
+  .comments__search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .comments__search input {
+    width: 100%;
+  }
+
+  .comments__search button {
+    width: 160px;
   }
 
 }

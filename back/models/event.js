@@ -19,7 +19,11 @@ const eventSchema = new Schema({
   format: String,
   theme: String,
   price: String,
-  users: [String]
+  users: [String],
+  comments: [{
+    author: String,
+    description: String,
+  }]
 
 }, { timestamps: true })
 

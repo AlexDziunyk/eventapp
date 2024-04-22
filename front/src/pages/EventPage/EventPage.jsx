@@ -1,5 +1,4 @@
 import './style.scss';
-import eventImg from '../../static/img/event.jpg';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
@@ -13,16 +12,32 @@ const EventPage = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [bottomMode, setBottomMode] = useState("comments");
+  const [commentText, setCommentText] = useState("");
+  const [commentsArray, setCommentsArray] = useState([]);
 
   const getEventData = async () => {
     try {
       const { data } = await axios.get(`/events/getEventById/${id}`);
-      console.log(data.result);
+
       setEvent(data.result);
+      setCommentsArray(data.result.comments);
     } catch (error) {
       console.log(error);
     }
+  }
 
+  const createComment = async () => {
+    try {
+      const { data } = await axios.post(`/events/createComment/${id}`, {
+        author: "login",
+        description: commentText
+      });
+
+      setCommentsArray(prev => [{ author: "login", description: commentText }, ...prev]);
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -33,7 +48,7 @@ const EventPage = () => {
     <>
       {event && <div className='event'>
         <div className='event__top'>
-          <img className='event__img' src={eventImg} alt='event'></img>
+          <img className='event__img' src={`http://localhost:3001/uploads/${event.image}`} alt='event'></img>
           <div className='event__col'>
             <div className='event__content'>
               <div className='event__title'>
@@ -52,7 +67,7 @@ const EventPage = () => {
               <div className='event__actions'>
                 <p className='event__price'>Price: <span>{event.price}</span></p>
                 <div className='event__notification'>
-                  <CiBellOn size={40}/>
+                  <CiBellOn size={40} />
                 </div>
               </div>
               <button className='event__button'>Buy ticket</button>
@@ -67,11 +82,16 @@ const EventPage = () => {
           <div onClick={() => setBottomMode("comments")} className={`event__modes_button ${bottomMode === "comments" && "button__active"}`}>Comments</div>
           <div onClick={() => setBottomMode("users")} className={`event__modes_button ${bottomMode === "users" && "button__active"}`}>Users</div>
         </div>
-        {bottomMode === "comments" && <div className='event__mode__items'>
-          <CommentItem />
-          <CommentItem />
-          <CommentItem />
-        </div>}
+        {bottomMode === "comments" &&
+          <div className='comments'>
+            <div className='comments__search'>
+              <input value={commentText} onChange={(evt) => setCommentText(evt.target.value)} placeholder='Type here your thoughts...'></input>
+              <button onClick={createComment}>Send</button>
+            </div>
+            <div className='event__mode__items'>
+              {commentsArray.map(({ author, description }, index) => <CommentItem key={index} author={author} description={description} />)}
+            </div>
+          </div>}
         {bottomMode === "users" && <div className='event__mode__items'>
           <UserItem />
           <UserItem />

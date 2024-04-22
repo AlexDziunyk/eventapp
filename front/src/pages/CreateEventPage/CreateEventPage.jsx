@@ -3,6 +3,7 @@ import './style.scss';
 import { useRef, useState } from 'react';
 import axios from '../../axios/axios';
 import { useNavigate } from 'react-router-dom';
+import { formats, themes } from '../../static/constants/constants';
 
 const CreateEventPage = () => {
 
@@ -18,13 +19,14 @@ const CreateEventPage = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [fileImage, setFileImage] = useState(null);
   const [price, setPrice] = useState(0);
+  const [formatOpen, setFormatOpen] = useState(false);
+  const [themeOpen, setThemeOpen] = useState(false);
 
   const inputRef = useRef(null)
   const navigate = useNavigate()
 
   const handleCreateEvent = async () => {
     try {
-
       const formData = new FormData();
       formData.append('image', fileImage);
       formData.append('title', title);
@@ -40,7 +42,6 @@ const CreateEventPage = () => {
 
       const response = await axios.post('/events/createEvent', formData)
 
-
       if (response.status === 201) {
         navigate("/");
       } else {
@@ -48,7 +49,8 @@ const CreateEventPage = () => {
       }
 
     } catch (error) {
-      setError("Something went wrong");
+      console.log(error);
+      setError("Something went terribly wrong");
     }
   }
 
@@ -80,11 +82,31 @@ const CreateEventPage = () => {
       <div className='top__container'>
         <div className='input__container'>
           <p className='input__label'>Format</p>
-          <input onChange={(evt) => setFormat(evt.target.value)} placeholder='Enter name of your event'></input>
+          <input value={format} readOnly onFocus={() => setFormatOpen(true)} onBlur={() => setFormatOpen(false)} placeholder='Choose format of your event'></input>
+          {formatOpen && <div className='input__list'>
+            {formats.map(({ title }, index) =>
+              <div onMouseDown={(evt) => {
+                evt.preventDefault();
+                setFormat(title);
+              }} className='input__list_item' key={index}>
+                {title}
+              </div>
+            )}
+          </div>}
         </div>
         <div className='input__container'>
           <p className='input__label'>Theme</p>
-          <input onChange={(evt) => setTheme(evt.target.value)} placeholder='Enter date of your event'></input>
+          <input value={theme} readOnly onFocus={() => setThemeOpen(true)} onBlur={() => setThemeOpen(false)} placeholder='Choose theme of your event'></input>
+          {themeOpen && <div className='input__list'>
+            {themes.map(({ title }, index) =>
+              <div onMouseDown={(evt) => {
+                evt.preventDefault();
+                setTheme(title);
+              }} className='input__list_item' key={index}>
+                {title}
+              </div>
+            )}
+          </div>}
         </div>
       </div>
       <div className='input__container'>

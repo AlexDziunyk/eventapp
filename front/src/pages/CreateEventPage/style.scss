@@ -67,10 +67,30 @@
         object-fit: cover;
         height: 240px;
         width: 200px;
-        
+
       }
 
     }
-
   }
+
+  .input__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input__list_item {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 8px;
+    border-radius: 4px;
+    background: #E2CEBC;
+    transition: 0.3s;
+  }
+
+  .input__list_item:hover {
+    background: #EDE3DA;
+  }
+
+
 }

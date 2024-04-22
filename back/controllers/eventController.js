@@ -1,13 +1,13 @@
 const User = require('../models/user');
 const { Event } = require('../models/event');
+const path = require('path');
 
 const createEvent = async (req, res) => {
   const { login, price, title, date, lat, lng, placeName, description, image, format, theme } = req.body;
 
+  const filePath = req.file ? path.basename(req.file.path) : "event.jpg";
+
   try {
-
-    const filePath = req.file.path;
-
     const event = new Event({
       title: title,
       date: date,
@@ -20,7 +20,8 @@ const createEvent = async (req, res) => {
       format: format,
       theme: theme,
       price: price,
-      users: []
+      users: [],
+      comments: []
     });
 
     const result = await event.save();
@@ -32,6 +33,25 @@ const createEvent = async (req, res) => {
       message: "Failed to create an event",
       error: error.message
     });
+  }
+}
+
+const createComment = async (req, res) => {
+  const { author, description } = req.body;
+  const { eventId } = req.params;
+
+  try {
+    const event = await Event.findById(eventId); 
+    event.comments.push({
+      author,
+      description
+    });
+    await event.save();
+
+    return res.status(201).json({ message: "Comment was successfully added" });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Something bad happened!" });
   }
 }
 
@@ -63,7 +83,7 @@ const getEventById = async (req, res) => {
   try {
     const { eventId } = req.params;
     const event = await Event.findById(eventId);
-    
+
     return res.status(200).json({ result: event, message: "Event successfully loaded!" });
   } catch (error) {
     return res.status(500).json({ error: error.message, message: "Such event wasn't found" });
@@ -72,4 +92,4 @@ const getEventById = async (req, res) => {
 
 
 
-module.exports = { createEvent, deleteEventById, getAllEvents, getEventById };
+module.exports = { createEvent, createComment, deleteEventById, getAllEvents, getEventById };
