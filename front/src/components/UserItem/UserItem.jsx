@@ -1,9 +1,9 @@
 import './style.scss';
 
-const UserItem = () => {
+const UserItem = ({ login }) => {
   return (
     <div className='user-item'>
-      <h4>Name</h4>
+      <h4>{login}</h4>
     </div>
   )
 }

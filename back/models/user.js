@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const { eventSchema } = require('./event.js');
 
 const userSchema = new Schema({
   login: {
@@ -13,24 +12,11 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  events: {
-    type: [{
-      title: {
-        type: String,
-        required: true,
-      },
-      date: {
-        type: String,
-        required: true
-      },
-      location: String,
-      description: String,
-    }]
-  }
+  events: [{ type: Schema.Types.ObjectId, ref: "event" }]
 
 }, { timestamps: true })
 
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('user', userSchema);
 
-module.exports = User;
+module.exports = { User, userSchema };
 

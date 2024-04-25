@@ -14,27 +14,66 @@ const EventPage = () => {
   const [bottomMode, setBottomMode] = useState("comments");
   const [commentText, setCommentText] = useState("");
   const [commentsArray, setCommentsArray] = useState([]);
+  const [usersArray, setUsersArray] = useState([]);
 
   const getEventData = async () => {
     try {
       const { data } = await axios.get(`/events/getEventById/${id}`);
-
       setEvent(data.result);
-      setCommentsArray(data.result.comments);
     } catch (error) {
       console.log(error);
     }
   }
 
-  const createComment = async () => {
+  const getCommentData = async () => {
     try {
-      const { data } = await axios.post(`/events/createComment/${id}`, {
-        author: "login",
-        description: commentText
+      const { data } = await axios.get(`/comments/getComments/${id}`);
+
+      setCommentsArray(data.result.reverse());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const getUsersData = async () => {
+    try {
+      const { data } = await axios.get(`/events/getUsers/${id}`);
+
+      setUsersArray(data.result.reverse());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const addUserToEvent = async () => {
+    try {
+      const { data } = await axios.post(`/users/addEventToUser`, {
+        eventId: id,
+        login: "test"
       });
 
-      setCommentsArray(prev => [{ author: "login", description: commentText }, ...prev]);
-      
+      console.log(data);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const addComment = async () => {
+    if (commentText === "") {
+      return;
+    }
+
+    try {
+      const { data } = await axios.post(`/comments/addComment/${id}`, {
+        author: "login",
+        userId: "66298ffc97ee7451d13fad3f",
+        content: commentText
+      });
+
+      setCommentsArray(prev => [{ author: "login", content: commentText }, ...prev]);
+      setCommentText("");
+
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +81,8 @@ const EventPage = () => {
 
   useEffect(() => {
     getEventData();
+    getCommentData();
+    getUsersData();
   }, []);
 
   return (
@@ -70,7 +111,7 @@ const EventPage = () => {
                   <CiBellOn size={40} />
                 </div>
               </div>
-              <button className='event__button'>Buy ticket</button>
+              <button onClick={addUserToEvent} className='event__button'>Buy ticket</button>
             </div>
           </div>
         </div>
@@ -86,17 +127,14 @@ const EventPage = () => {
           <div className='comments'>
             <div className='comments__search'>
               <input value={commentText} onChange={(evt) => setCommentText(evt.target.value)} placeholder='Type here your thoughts...'></input>
-              <button onClick={createComment}>Send</button>
+              <button onClick={addComment}>Send</button>
             </div>
             <div className='event__mode__items'>
-              {commentsArray.map(({ author, description }, index) => <CommentItem key={index} author={author} description={description} />)}
+              {commentsArray.map(({ author, content }, index) => <CommentItem key={index} author={author} description={content} />)}
             </div>
           </div>}
         {bottomMode === "users" && <div className='event__mode__items'>
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
+          {usersArray.map(({ login }, index) => <UserItem key={index} login={login} />)}
         </div>}
       </div>}
     </>

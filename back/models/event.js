@@ -10,24 +10,48 @@ const eventSchema = new Schema({
     type: String,
     required: true
   },
-  lat: Number,
-  lng: Number,
-  placeName: String,
-  description: String,
-  author: String,
-  image: String,
-  format: String,
-  theme: String,
-  price: String,
-  users: [String],
-  comments: [{
-    author: String,
-    description: String,
-  }]
+  lat: {
+    type: Number,
+    required: true
+  },
+  lng: {
+    type: Number,
+    required: true
+  },
+  placeName: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  format: {
+    type: String,
+    required: true,
+  },
+  theme: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: String,
+    required: true,
+  },
+  users: [{ type: Schema.Types.ObjectId, ref: 'user' }],
+  comments: [{ type: Schema.Types.ObjectId, ref: 'comment' }]
 
 }, { timestamps: true })
 
-const Event = mongoose.model('events', eventSchema);
+const Event = mongoose.model('event', eventSchema);
 
 module.exports = { Event, eventSchema };
 

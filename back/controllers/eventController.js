@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const { User } = require('../models/user');
 const { Event } = require('../models/event');
 const path = require('path');
 
@@ -33,25 +33,6 @@ const createEvent = async (req, res) => {
       message: "Failed to create an event",
       error: error.message
     });
-  }
-}
-
-const createComment = async (req, res) => {
-  const { author, description } = req.body;
-  const { eventId } = req.params;
-
-  try {
-    const event = await Event.findById(eventId); 
-    event.comments.push({
-      author,
-      description
-    });
-    await event.save();
-
-    return res.status(201).json({ message: "Comment was successfully added" });
-
-  } catch (error) {
-    return res.status(500).json({ message: "Something bad happened!" });
   }
 }
 
@@ -90,6 +71,22 @@ const getEventById = async (req, res) => {
   }
 }
 
+const getUsersForEvent = async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const eventWithUsers = await Event.findById(eventId).populate('users');
+    console.log(eventWithUsers)
+
+    return res.status(200).json({ result: eventWithUsers.users, message: "Users were found for this event!" });
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ error: error.message, message: "No users for such event!" });
+  }
+
+}
 
 
-module.exports = { createEvent, createComment, deleteEventById, getAllEvents, getEventById };
+
+module.exports = { createEvent, deleteEventById, getAllEvents, getEventById, getUsersForEvent };
