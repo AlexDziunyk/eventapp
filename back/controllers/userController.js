@@ -1,19 +1,32 @@
 const { User } = require('../models/user');
 const { Event } = require('../models/event');
+const generateToken = require('../tokenService');
+const { sendConfirmationEmail } = require('../emailService');
 
 const createUser = async (req, res) => {
-  const { login, password } = req.body;
+  const { login, password, email } = req.body;
 
   try {
+    const existingUser = await User.findOne({ $or: [{ login }, { email }] });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this login or email already exists' });
+    }
+
     const user = new User({
       login: login,
       password: password,
+      email: email,
       events: []
     });
 
+    const confirmationToken = generateToken();
+    user.confirmationToken = confirmationToken;
+
     const result = await user.save();
 
-    return res.status(201).json({ data: result, message: "User successfully created!" });
+    await sendConfirmationEmail(email, confirmationToken);
+
+    return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation." });
 
   } catch (error) {
     console.log(error)
@@ -46,7 +59,5 @@ const addEventToUser = async (req, res) => {
     res.status(500).json({ message: "Error adding event to user", error: error.message });
   }
 }
-
-
 
 module.exports = { createUser, addEventToUser };

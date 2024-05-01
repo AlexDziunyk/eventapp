@@ -18,6 +18,26 @@ mongoose.connect(mongoDB)
   .then(result => console.log("connected to db"))
   .catch(e => console.log(e));
 
+app.get('/confirm', async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const user = await User.findOne({ confirmationToken: token });
+
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid confirmation token' });
+    }
+
+    user.confirmed = true;
+    user.confirmationToken = undefined;
+    await user.save();
+
+    return res.status(200).json({ message: 'Account confirmed successfully' });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Server error' });
+  }
+});
 
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
