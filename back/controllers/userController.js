@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
 
     const token = jwt.sign({ userId: user._id, login: user.login }, secretKey, { expiresIn: '1h' });
 
-    return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation.", token });
+    return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation!", token });
 
   } catch (error) {
     console.log(error);
