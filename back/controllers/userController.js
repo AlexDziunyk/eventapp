@@ -33,7 +33,7 @@ const createUser = async (req, res) => {
     const secretKey = crypto.randomBytes(32).toString('hex');
     console.log('Devug test secret key:', secretKey);
 
-    const token = jwt.sign({ userId: user.userId, login: user.login }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, login: user.login }, secretKey, { expiresIn: '1h' });
 
     return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation!", token });
 
