@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { loginUser } = require('../controllers/userController');
 const User = require('../models/User'); 
 
 router.post('/register', async (req, res) => {
@@ -20,5 +21,7 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+router.post('/login', loginUser);
 
 module.exports = router;

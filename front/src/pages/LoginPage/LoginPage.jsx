@@ -8,8 +8,8 @@ const LoginPage = () => {
         <h1>Log In</h1>
         <div>Log In to be more powerful</div>
         <div className='loginInput'>
-          <b>Login</b>
-          <input placeholder='Enter your login'></input>
+          <b>Login or Email</b>
+          <input type='email' placeholder='Enter your login or email'></input>
         </div>
         <div className='loginInput'>
           <b>Password</b>
