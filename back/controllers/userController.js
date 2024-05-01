@@ -1,4 +1,4 @@
-const { User } = require('../models/user');
+const User = require('../models/user');
 const { Event } = require('../models/event');
 const generateToken = require('../service/tokenService');
 const { sendConfirmationEmail } = require('../service/emailService');
@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 const createUser = async (req, res) => {
-  
+
   const { login, password, email } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
@@ -29,7 +29,7 @@ const createUser = async (req, res) => {
     const result = await user.save();
 
     await sendConfirmationEmail(email, confirmationToken);
-    
+
     const secretKey = crypto.randomBytes(32).toString('hex');
     console.log('Devug test secret key:', secretKey);
 
@@ -70,6 +70,7 @@ const addEventToUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
+  console.log("SDSDSD");
   const { login, password } = req.body;
   try {
     const user = await User.findOne({ login });
@@ -92,4 +93,4 @@ const loginUser = async (req, res) => {
 };
 
 
-module.exports = { createUser, addEventToUser, loginUser};
+module.exports = { createUser, addEventToUser, loginUser };

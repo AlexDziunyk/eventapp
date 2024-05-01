@@ -19,7 +19,7 @@ const SignUpPage = () => {
     setError('');
 
     try {
-      const response = await axios.post('/users/createUser', {
+      const response = await axios.post('/users/register', {
         login,
         email,
         password,
@@ -28,6 +28,7 @@ const SignUpPage = () => {
 
       if (response.status === 201) {
         navigate('/');
+        localStorage.setItem("token", response.data.token)
       } else {
         setError('Such user already exists');
       }
