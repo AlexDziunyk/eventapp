@@ -10,4 +10,18 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-module.exports = transporter;
+const sendConfirmationEmail = async (email, confirmationToken) => {
+  try {
+    await transporter.sendMail({
+      from: '', // Specify the same email from which you're sending
+      to: email,
+      subject: 'Registration Confirmation',
+      html: `<p>To confirm your registration, please follow <a href="confirmation_link/${confirmationToken}">this link</a></p>`,
+    });
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.error('Error sending email:', error);
+  }
+};
+
+module.exports = { transporter, sendConfirmationEmail };

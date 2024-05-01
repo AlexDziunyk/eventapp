@@ -68,4 +68,28 @@ const addEventToUser = async (req, res) => {
   }
 }
 
-module.exports = { createUser, addEventToUser };
+
+const loginUser = async (req, res) => {
+  const { login, password } = req.body;
+  try {
+    const user = await User.findOne({ login });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign({ userId: user._id, login: user.login }, 'your_secret_key', { expiresIn: '1h' });
+
+    res.status(200).json({ message: 'Login successful', token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
+module.exports = { createUser, addEventToUser, loginUser};
