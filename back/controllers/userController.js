@@ -2,36 +2,40 @@ const { User } = require('../models/user');
 const { Event } = require('../models/event');
 const generateToken = require('../service/tokenService');
 const { sendConfirmationEmail } = require('../service/emailService');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 
 const createUser = async (req, res) => {
+  
   const { login, password, email } = req.body;
-
+  const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    // Перевіряємо, чи існує користувач з таким логіном або емейлом
     const existingUser = await User.findOne({ login });
     if (existingUser) {
       return res.status(400).json({ message: 'User with this login already exists' });
     }
 
-    // Створюємо нового користувача
     const user = new User({
       login: login,
-      password: password,
+      password: hashedPassword,
       email: email,
       events: []
     });
 
-    // Генеруємо токен для підтвердження
     const confirmationToken = generateToken();
     user.confirmationToken = confirmationToken;
 
-    // Зберігаємо користувача у базу даних
     const result = await user.save();
 
-    // Відправляємо лист з підтвердженням на емейл користувача
     await sendConfirmationEmail(email, confirmationToken);
+    
+    const secretKey = crypto.randomBytes(32).toString('hex');
+    console.log('Devug test secret key:', secretKey);
 
-    return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation." });
+    const token = jwt.sign({ userId: user._id, login: user.login }, secretKey, { expiresIn: '1h' });
+
+    return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation.", token });
 
   } catch (error) {
     console.log(error);
@@ -64,4 +68,4 @@ const addEventToUser = async (req, res) => {
   }
 }
 
-module.exFports = { createUser, addEventToUser };
+module.exports = { createUser, addEventToUser };
