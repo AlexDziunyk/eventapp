@@ -1,0 +1,81 @@
+.settings-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    form {
+      display: grid;
+      gap: 15px;
+  
+      .form-group {
+        gap: 5px;
+        display: flex;
+        align-items: center;
+        label {
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+  
+          input[type='checkbox'] {
+            margin-right: 10px;
+          }
+        }
+  
+        input[type='text'],
+        input[type='email'],
+        input[type='password'],
+        textarea {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+  
+        input[type='file'] {
+          display: none;
+        }
+  
+        .image-input-label {
+        margin-right: 10px;
+        
+          display: inline-block;
+          padding: 8px;
+          background-color: #eaeaea;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+  
+        .preview-image {
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%; 
+            background-size: cover;
+            background-position: center;
+            margin-left: auto; 
+        }
+  
+        button {
+          padding: 15px; 
+          width: 300px;
+          background-color: peachpuff; 
+          color: #000000;
+          border: none;
+          border-radius: 25px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+  
+          &:hover {
+            background-color: #ffb347; 
+          }
+        }
+      }
+    }
+  }
+  
