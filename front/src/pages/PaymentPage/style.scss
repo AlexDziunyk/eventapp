@@ -1,0 +1,20 @@
+.payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .payment__container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 460px;
+    width: 100%;
+    border-radius: 34px;
+    border: 1px #F5F4F5;
+    background: #fff6ed;
+    padding: 60px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
+  }
+}

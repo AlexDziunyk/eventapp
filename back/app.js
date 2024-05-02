@@ -8,6 +8,9 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const stripeRoutes = require('./routes/stripeRoutes');
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const mongoDB = "mongodb+srv://alexdziunyk:Bop0R4wjSErnpvTc@cluster1.wfjlnqc.mongodb.net/uevent?retryWrites=true&w=majority&appName=Cluster1";
 
@@ -43,6 +46,7 @@ app.get('/confirm', async (req, res) => {
 app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/comments', commentRoutes);
+app.use('/api/stripe', stripeRoutes);
 
 app.listen(3001, () => {
   console.log("Listening");

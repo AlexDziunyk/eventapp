@@ -1,5 +1,5 @@
 import './style.scss';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
 import Map from '../../components/Map/Map';
@@ -10,16 +10,27 @@ import { CiBellOn } from "react-icons/ci";
 const EventPage = () => {
 
   const { id } = useParams();
+  const navigate = useNavigate();
   const [event, setEvent] = useState(null);
+  const [price, setPrice] = useState(null);
   const [bottomMode, setBottomMode] = useState("comments");
   const [commentText, setCommentText] = useState("");
   const [commentsArray, setCommentsArray] = useState([]);
   const [usersArray, setUsersArray] = useState([]);
 
+
+  const buyTicket = async () => {
+    navigate(`/payment/${id}/${price}`)
+  }
+
+
   const getEventData = async () => {
     try {
       const { data } = await axios.get(`/events/getEventById/${id}`);
       setEvent(data.result);
+
+      const price = parseInt(data.result.price.replace('$', ''));
+      setPrice(price);
     } catch (error) {
       console.log(error);
     }
@@ -40,19 +51,6 @@ const EventPage = () => {
       const { data } = await axios.get(`/events/getUsers/${id}`);
 
       setUsersArray(data.result.reverse());
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const addUserToEvent = async () => {
-    try {
-      const { data } = await axios.post(`/users/addEventToUser`, {
-        eventId: id,
-      });
-
-      console.log(data);
-
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +108,7 @@ const EventPage = () => {
                   <CiBellOn size={40} />
                 </div>
               </div>
-              <button onClick={addUserToEvent} className='event__button'>Buy ticket</button>
+              <button onClick={buyTicket} className='event__button'>Buy ticket</button>
             </div>
           </div>
         </div>

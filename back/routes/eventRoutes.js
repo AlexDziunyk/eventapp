@@ -8,7 +8,7 @@ const { tokenVerify } = require('../middlewares/tokenVerify');
 router.get("/all", getAllEvents);
 router.get("/getEventById/:eventId", getEventById);
 router.get("/getUsers/:eventId", getUsersForEvent);
-router.post('/createEvent', imageUpload.single('image'), tokenVerify,  createEvent);
+router.post('/createEvent', imageUpload.single('image'), tokenVerify, createEvent);
 router.delete('/deleteEventById', deleteEventById);
 
 module.exports = router;
