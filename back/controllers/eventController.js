@@ -1,11 +1,13 @@
-const { User } = require('../models/user');
+// const User = require('../models/user');
 const { Event } = require('../models/event');
 const path = require('path');
 
 const createEvent = async (req, res) => {
-  const { login, price, title, date, lat, lng, placeName, description, image, format, theme } = req.body;
+  const { price, title, date, lat, lng, placeName, description, format, theme } = req.body;
 
   const filePath = req.file ? path.basename(req.file.path) : "event.jpg";
+  const { login } = req.login;
+  console.log(login)
 
   try {
     const event = new Event({
@@ -76,7 +78,6 @@ const getUsersForEvent = async (req, res) => {
 
   try {
     const eventWithUsers = await Event.findById(eventId).populate('users');
-    console.log(eventWithUsers)
 
     return res.status(200).json({ result: eventWithUsers.users, message: "Users were found for this event!" });
 

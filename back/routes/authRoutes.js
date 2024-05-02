@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { sendConfirmationEmail } = require('../controllers/userController');
-const User = require('../models/User');
+const User = require('../models/user');
 
 router.get('/confirm', async (req, res) => {
   const { token } = req.query;

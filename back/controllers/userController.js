@@ -1,4 +1,4 @@
-const { User } = require('../models/user');
+const User = require('../models/user');
 const { Event } = require('../models/event');
 const generateToken = require('../service/tokenService');
 const { sendConfirmationEmail } = require('../service/emailService');
@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 const createUser = async (req, res) => {
-  
+
   const { login, password, email } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
@@ -29,11 +29,11 @@ const createUser = async (req, res) => {
     const result = await user.save();
 
     await sendConfirmationEmail(email, confirmationToken);
-    
-    const secretKey = crypto.randomBytes(32).toString('hex');
-    console.log('Devug test secret key:', secretKey);
 
-    const token = jwt.sign({ userId: user._id, login: user.login }, secretKey, { expiresIn: '1h' });
+    // const secretKey = "sdpofmsflklkj34jj6klkljal";
+    // console.log('Devug test secret key:', secretKey);
+
+    const token = jwt.sign({ userId: user._id, login: user.login }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
     return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation!", token });
 
@@ -47,7 +47,8 @@ const createUser = async (req, res) => {
 }
 
 const addEventToUser = async (req, res) => {
-  const { login, eventId } = req.body;
+  const { eventId } = req.body;
+  const { login } = req.login;
   try {
     const user = await User.findOne({ login: login });
     const event = await Event.findByIdAndUpdate(eventId,
@@ -92,4 +93,4 @@ const loginUser = async (req, res) => {
 };
 
 
-module.exports = { createUser, addEventToUser, loginUser};
+module.exports = { createUser, addEventToUser, loginUser };

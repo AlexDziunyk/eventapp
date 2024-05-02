@@ -7,8 +7,9 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   confirmationToken: { type: String },
   confirmed: { type: Boolean, default: false },
+  events: [{ type: Schema.Types.ObjectId, ref: 'event' }]
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

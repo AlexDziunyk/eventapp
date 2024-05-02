@@ -1,14 +1,17 @@
-const { User } = require('../models/user');
+const User  = require('../models/user');
 const { Event } = require('../models/event');
 const { Comment } = require('../models/comment');
 
 const addCommentToEvent = async (req, res) => {
-  const { userId, author, content } = req.body;
+  const { content } = req.body;
   const { eventId } = req.params;
+
+  const {login} = req.login;
+  const userId = req.userId;
 
   try {
     const comment = new Comment({
-      author: author,
+      author: login,
       content,
       user: userId
     });
