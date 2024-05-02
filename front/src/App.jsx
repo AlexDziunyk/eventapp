@@ -18,6 +18,9 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CreateEventPage from './pages/CreateEventPage/CreateEventPage';
 import EventPage from './pages/EventPage/EventPage';
+import PaymentPage from './pages/PaymentPage/PaymentPage';
+import PaymentProvider from './pages/PaymentPage/PaymentProvider';
+import CompletionPaymentPage from './pages/CompletionPaymentPage/CompletionPaymentPage';
 
 function App() {
 
@@ -32,6 +35,8 @@ function App() {
         <Route element={<ProfilePage />} path='profile'></Route>
         <Route element={<CreateEventPage />} path='create'></Route>
         <Route element={<EventPage />} path='events/:id'></Route>
+        <Route element={<PaymentProvider />} path='payment/:eventId/:price'></Route>
+        <Route element={<CompletionPaymentPage />} path='completion'></Route>
       </Route>
     )
   );
