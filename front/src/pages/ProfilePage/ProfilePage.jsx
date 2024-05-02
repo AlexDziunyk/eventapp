@@ -3,6 +3,7 @@ import './style.scss';
 import MainEventItem from '../../components/MainEventItem/MainEventItem';
 import TicketItem from '../../components/TicketItem/TicketItem';
 import NotificationItem from '../../components/NotificationItem/NotificationItem';
+import SettingsPage from '../../components/SettingsPage/SettingsPage'; // Додав імпорт компонента SettingsPage
 
 const ProfilePage = () => {
 
@@ -40,6 +41,11 @@ const ProfilePage = () => {
         <NotificationItem />
       </div>}
 
+      {page === "settings" && (
+        <div className='profile__settings'>
+          <SettingsPage />
+        </div>
+      )}
 
     </div>
   )
