@@ -7,7 +7,8 @@ const userSchema = new Schema({
   email: { type: String, required: true },
   confirmationToken: { type: String },
   confirmed: { type: Boolean, default: false },
-  events: [{ type: Schema.Types.ObjectId, ref: 'event' }]
+  events: [{ type: Schema.Types.ObjectId, ref: 'event' }],
+  role: [{ type: String, enum: ['user']}]
 });
 
 const User = mongoose.model('user', userSchema);
