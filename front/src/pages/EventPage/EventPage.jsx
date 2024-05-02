@@ -49,7 +49,6 @@ const EventPage = () => {
     try {
       const { data } = await axios.post(`/users/addEventToUser`, {
         eventId: id,
-        login: "test"
       });
 
       console.log(data);
@@ -66,12 +65,12 @@ const EventPage = () => {
 
     try {
       const { data } = await axios.post(`/comments/addComment/${id}`, {
-        author: "login",
-        userId: "66298ffc97ee7451d13fad3f",
         content: commentText
       });
 
-      setCommentsArray(prev => [{ author: "login", content: commentText }, ...prev]);
+      console.log(data);
+
+      setCommentsArray(prev => [{ author: data.result.author, content: commentText }, ...prev]);
       setCommentText("");
 
     } catch (error) {

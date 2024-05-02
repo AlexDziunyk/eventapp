@@ -30,10 +30,10 @@ const createUser = async (req, res) => {
 
     await sendConfirmationEmail(email, confirmationToken);
 
-    const secretKey = crypto.randomBytes(32).toString('hex');
-    console.log('Devug test secret key:', secretKey);
+    // const secretKey = "sdpofmsflklkj34jj6klkljal";
+    // console.log('Devug test secret key:', secretKey);
 
-    const token = jwt.sign({ userId: user._id, login: user.login }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, login: user.login }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
     return res.status(201).json({ data: result, message: "User successfully created! Check your email for confirmation!", token });
 
@@ -47,7 +47,8 @@ const createUser = async (req, res) => {
 }
 
 const addEventToUser = async (req, res) => {
-  const { login, eventId } = req.body;
+  const { eventId } = req.body;
+  const { login } = req.login;
   try {
     const user = await User.findOne({ login: login });
     const event = await Event.findByIdAndUpdate(eventId,
@@ -70,7 +71,6 @@ const addEventToUser = async (req, res) => {
 
 
 const loginUser = async (req, res) => {
-  console.log("SDSDSD");
   const { login, password } = req.body;
   try {
     const user = await User.findOne({ login });

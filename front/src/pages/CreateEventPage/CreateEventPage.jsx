@@ -35,7 +35,6 @@ const CreateEventPage = () => {
       formData.append('lng', lng);
       formData.append('placeName', chosenPlace);
       formData.append('description', description);
-      formData.append('login', "login");
       formData.append('theme', theme);
       formData.append('format', format);
       formData.append('price', price + "$");
