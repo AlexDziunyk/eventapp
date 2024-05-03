@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 const sendConfirmationEmail = async (email, confirmationToken) => {
   try {
     await transporter.sendMail({
-      from: '', // Specify the same email from which you're sending
+      from: '', 
       to: email,
       subject: 'Registration Confirmation',
       html: `<p>To confirm your registration, please follow <a href="confirmation_link/${confirmationToken}">this link</a></p>`,
