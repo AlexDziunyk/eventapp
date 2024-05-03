@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
-const notificationsSchema = new Schema({
+const notificationSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -13,7 +13,7 @@ const notificationsSchema = new Schema({
   },
 });
 
-const Notification = mongoose.model('notification', notificationsSchema);
+const Notification = mongoose.model('notification', notificationSchema);
 
 module.exports = Notification;
 

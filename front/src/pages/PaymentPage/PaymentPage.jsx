@@ -13,6 +13,16 @@ const PaymentPage = () => {
 
   const [processing, setProcessing] = useState(false);
   const navigate = useNavigate();
+  const [event, setEvent] = useState("");
+
+  const getEventData = async () => {
+    try {
+      const { data } = await axios.get(`/events/getEventById/${eventId}`);
+      setEvent(data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const addUserToEvent = async () => {
     try {
@@ -26,6 +36,16 @@ const PaymentPage = () => {
       console.log(error);
     }
   }
+
+  const addNotification = async () => {
+    try {
+      const { data } = await axios.post('/notifications/add', { title: `Event: ${event.title}!`, text: `You bought ticket for ${event.price} for event ${event.title}! This event will happen ${event.date}` });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const handleSubmitPayment = async () => {
     if (!stripe || !elements) {
@@ -46,8 +66,9 @@ const PaymentPage = () => {
       navigate('/completion?status=failed');
     } else if (paymentIntent && paymentIntent.status === "succeeded") {
       addUserToEvent();
+      addNotification();
       navigate('/completion?status=success');
-      
+
     } else {
       navigate('/completion?status=failed');
     }
@@ -55,6 +76,10 @@ const PaymentPage = () => {
     setProcessing(false);
 
   }
+
+  useEffect(() => {
+    getEventData();
+  }, []);
 
 
   return (

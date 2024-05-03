@@ -9,7 +9,10 @@ const userSchema = new Schema({
   confirmationToken: { type: String },
   confirmed: { type: Boolean, default: false },
   events: [{ type: Schema.Types.ObjectId, ref: 'event' }],
-  notifications: [{ type: Schema.Types.ObjectId, ref: 'notification' }],
+  notifications: [{
+    title: String,
+    text: String
+  }],
   role: [{ type: String, enum: ['user'] }]
 });
 

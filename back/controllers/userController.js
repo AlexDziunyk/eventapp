@@ -18,9 +18,11 @@ const createUser = async (req, res) => {
 
     const user = new User({
       login: login,
+      profilename: login,
       password: hashedPassword,
       email: email,
-      events: []
+      events: [],
+      notifications: []
     });
 
     const confirmationToken = generateToken();

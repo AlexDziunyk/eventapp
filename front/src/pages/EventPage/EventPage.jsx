@@ -76,6 +76,15 @@ const EventPage = () => {
     }
   }
 
+  const addNotification = async () => {
+    try {
+      const { data } = await axios.post('/notifications/add', { title: `You follow ${event.title}!`, text: `This event will happen ${event.date}` });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getEventData();
     getCommentData();
@@ -104,7 +113,7 @@ const EventPage = () => {
             <div className='event__price_info'>
               <div className='event__actions'>
                 <p className='event__price'>Price: <span>{event.price}</span></p>
-                <div className='event__notification'>
+                <div onClick={addNotification} className='event__notification'>
                   <CiBellOn size={40} />
                 </div>
               </div>

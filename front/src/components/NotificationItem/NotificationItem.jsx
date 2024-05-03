@@ -1,11 +1,11 @@
 import './style.scss';
 
-const NotificationItem = () => {
+const NotificationItem = ({ title, text }) => {
   return (
     <div className='notification'>
-      <h1>Title</h1>
-      <h2>Date: 20/12/2025</h2>
-      <div className='notification__button'>Unsubscribe</div>
+      <h1>{title}</h1>
+      <p>{text}</p>
+      {/* <div className='notification__button'>Go to event</div> */}
     </div>
   )
 }
