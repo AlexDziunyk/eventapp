@@ -2,6 +2,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import './style.scss';
 import { useState } from "react";
 import axios from "../../axios/axios";
+import { useAuth } from "../../context/AuthContext";
 
 const LoginPage = () => {
 
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const handleLoginUser = async () => {
     try {
@@ -17,6 +19,7 @@ const LoginPage = () => {
       if (response.status === 200) {
         navigate('/');
         localStorage.setItem("token", response.data.token)
+        setIsLoggedIn(true);
       } else {
         setError("Such user doesn't exist");
       }

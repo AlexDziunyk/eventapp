@@ -8,7 +8,7 @@ import CompanyItem from '../../components/CompanyItem/CompanyItem';
 import axios from '../../axios/axios';
 
 const ProfilePage = () => {
-  const [page, setPage] = useState("events");
+  const [page, setPage] = useState("tickets");
   const [notifications, setNotifications] = useState([]);
   const [tickets, setTickets] = useState([]);
 

@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './style.scss';
 import { useState } from 'react';
 import axios from '../../axios/axios';
+import { useAuth } from "../../context/AuthContext";
 
 const SignUpPage = () => {
   const [login, setLogin] = useState('');
@@ -10,6 +11,7 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const handleCreateUser = async () => {
     if (password !== confirmPassword) {
@@ -29,6 +31,7 @@ const SignUpPage = () => {
       if (response.status === 201) {
         navigate('/');
         localStorage.setItem("token", response.data.token)
+        setIsLoggedIn(true);
       } else {
         setError('Such user already exists');
       }

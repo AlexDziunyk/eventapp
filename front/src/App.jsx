@@ -21,6 +21,7 @@ import EventPage from './pages/EventPage/EventPage';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
 import PaymentProvider from './pages/PaymentPage/PaymentProvider';
 import CompletionPaymentPage from './pages/CompletionPaymentPage/CompletionPaymentPage';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
 
@@ -43,8 +44,9 @@ function App() {
 
   return (
     <div className='app'>
-      <RouterProvider router={router} />
-
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   )
 }
