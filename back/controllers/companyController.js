@@ -63,43 +63,43 @@ exports.deleteCompany = async (req, res) => {
 };
 
 exports.addUserToCompany = async (req, res) => {
-    const { companyId, userId } = req.body;
-  
-    try {
-      const company = await Company.findById(companyId);
-      const user = await User.findById(userId);
-  
-      if (!company || !user) {
-        return res.status(404).json({ error: 'Company or user not found' });
-      }
-  
-      company.users.push(userId);
-      await company.save();
-  
-      res.status(200).json({ message: 'User added to company successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
+  const { companyId, userId } = req.body;
+
+  try {
+    const company = await Company.findById(companyId);
+    const user = await User.findById(userId);
+
+    if (!company || !user) {
+      return res.status(404).json({ error: 'Company or user not found' });
     }
+
+    company.users.push(userId);
+    await company.save();
+
+    res.status(200).json({ message: 'User added to company successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };
-  
+
 exports.removeUserFromCompany = async (req, res) => {
-    const { companyId, userId } = req.body;
-  
-    try {
-      const company = await Company.findById(companyId);
-      const user = await User.findById(userId);
-  
-      if (!company || !user) {
-        return res.status(404).json({ error: 'Company or user not found' });
-      }
-  
-      company.users.pull(userId);
-      await company.save();
-  
-      res.status(200).json({ message: 'User removed from company successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
+  const { companyId, userId } = req.body;
+
+  try {
+    const company = await Company.findById(companyId);
+    const user = await User.findById(userId);
+
+    if (!company || !user) {
+      return res.status(404).json({ error: 'Company or user not found' });
     }
+
+    company.users.pull(userId);
+    await company.save();
+
+    res.status(200).json({ message: 'User removed from company successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 };

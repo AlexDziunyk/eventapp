@@ -60,7 +60,7 @@ const addEventToUser = async (req, res) => {
 
     await User.findByIdAndUpdate(
       user._id,
-      { $addToSet: { events: event._id } },
+      { $addToSet: { tickets: event._id } },
       { new: true }
     );
 

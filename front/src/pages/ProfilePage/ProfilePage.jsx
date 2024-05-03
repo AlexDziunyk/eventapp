@@ -10,17 +10,24 @@ import axios from '../../axios/axios';
 const ProfilePage = () => {
   const [page, setPage] = useState("events");
   const [notifications, setNotifications] = useState([]);
+  const [tickets, setTickets] = useState([]);
 
   const getNotifications = async () => {
-    const {data} = await axios.get("/notifications/all");
+    const { data } = await axios.get("/notifications/all");
 
     setNotifications(data.result.reverse())
-
-
   }
+
+  const getTickets = async () => {
+    const { data } = await axios.get("/events/tickets");
+    console.log(data);
+    setTickets(data.result.reverse())
+  }
+
 
   useEffect(() => {
     getNotifications();
+    getTickets();
   }, []);
 
 
@@ -44,9 +51,7 @@ const ProfilePage = () => {
       </div>}
 
       {page === "tickets" && <div className='profile__tickets'>
-        <TicketItem />
-        <TicketItem />
-        <TicketItem />
+        {tickets.map(({ date, price, description, title, _id }) => <TicketItem id={_id} key={_id} title={title} text={description} price={price} date={date} />)}
       </div>}
 
       {page === "notifications" && <div className='profile__notifications'>
