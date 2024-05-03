@@ -6,6 +6,7 @@ const companySchema = new Schema({
   companyEmail: { type: String, required: true },
   location: { type: String, required: true },
   events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
+  users: [{ type: Schema.Types.ObjectId, ref: 'user' }],
 }, { timestamps: true });
 
 const Company = mongoose.model('Company', companySchema);

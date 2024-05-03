@@ -31,7 +31,7 @@ const createUser = async (req, res) => {
     await sendConfirmationEmail(email, confirmationToken);
 
     // const secretKey = "sdpofmsflklkj34jj6klkljal";
-    // console.log('Devug test secret key:', secretKey);
+    // console.log('Debug test secret key:', secretKey);
 
     const token = jwt.sign({ userId: user._id, login: user.login }, process.env.JWT_SECRET, { expiresIn: '3d' });
 
