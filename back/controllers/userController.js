@@ -18,9 +18,11 @@ const createUser = async (req, res) => {
 
     const user = new User({
       login: login,
+      profilename: login,
       password: hashedPassword,
       email: email,
-      events: []
+      events: [],
+      notifications: []
     });
 
     const confirmationToken = generateToken();
@@ -58,7 +60,7 @@ const addEventToUser = async (req, res) => {
 
     await User.findByIdAndUpdate(
       user._id,
-      { $addToSet: { events: event._id } },
+      { $addToSet: { tickets: event._id } },
       { new: true }
     );
 
@@ -83,7 +85,7 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user._id, login: user.login }, 'your_secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, login: user.login }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {

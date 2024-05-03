@@ -4,11 +4,13 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
+const User = require('./models/user');
 
 const userRoutes = require('./routes/userRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const stripeRoutes = require('./routes/stripeRoutes');
+const notificationRoutes = require('./routes/notificationsRoutes');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
@@ -47,6 +49,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/stripe', stripeRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 app.listen(3001, () => {
   console.log("Listening");

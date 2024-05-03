@@ -1,6 +1,7 @@
 // const User = require('../models/user');
 const { Event } = require('../models/event');
 const path = require('path');
+const User = require('../models/user');
 
 const createEvent = async (req, res) => {
   const { price, title, date, lat, lng, placeName, description, format, theme } = req.body;
@@ -89,5 +90,16 @@ const getUsersForEvent = async (req, res) => {
 }
 
 
+const getTicketsForUser = async (req, res) => {
+  const { login } = req.login;
+  try {
+    const user = await User.findOne({ login: login }).populate("tickets");
+    return res.status(200).json({ result: user.tickets, message: "Tickets were found for this user!" });
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ error: error.message, message: "No tickets for such user!" });
+  }
+}
 
-module.exports = { createEvent, deleteEventById, getAllEvents, getEventById, getUsersForEvent };
+
+module.exports = { createEvent, deleteEventById, getAllEvents, getEventById, getUsersForEvent, getTicketsForUser };

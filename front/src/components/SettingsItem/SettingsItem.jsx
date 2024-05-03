@@ -11,7 +11,7 @@ const SettingsPage = () => {
   const [password, setPassword] = useState('');
   const [notification, setNotification] = useState('');
   const [organizationDescription, setOrganizationDescription] = useState('');
-  const [isOrganization, setIsOrganization] = useState(false); 
+  const [isOrganization, setIsOrganization] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +47,7 @@ const SettingsPage = () => {
     <div className="settings-page">
       <h2>Account Settings</h2>
       <form onSubmit={handleSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="imageInput">Profile Image:</label>
           <input type="file" id="imageInput" onChange={handleFileChange} style={{ display: 'none' }} />
           <label htmlFor="imageInput" className="image-input-label">
