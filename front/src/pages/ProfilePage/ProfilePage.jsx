@@ -35,20 +35,20 @@ const ProfilePage = () => {
     <div className='profile'>
       <h1>My account</h1>
       <div className='profile__bar'>
-        <div onClick={() => setPage("events")} className={`profile__bar_item ${page === "events" && "active"}`}>Events</div>
+        {/* <div onClick={() => setPage("events")} className={`profile__bar_item ${page === "events" && "active"}`}>Events</div> */}
         <div onClick={() => setPage("tickets")} className={`profile__bar_item ${page === "tickets" && "active"}`}>Tickets</div>
         <div onClick={() => setPage("notifications")} className={`profile__bar_item ${page === "notifications" && "active"}`}>Notifications</div>
         <div onClick={() => setPage("settings")} className={`profile__bar_item ${page === "settings" && "active"}`}>Settings</div>
         <div onClick={() => setPage("company")} className={`profile__bar_item ${page === "company" && "active"}`}>Company</div> {/* Додано кнопку для компанії */}
       </div>
 
-      {page === "events" && <div className='profile__events'>
+      {/* {page === "events" && <div className='profile__events'>
         <MainEventItem />
         <MainEventItem />
         <MainEventItem />
         <MainEventItem />
         <MainEventItem />
-      </div>}
+      </div>} */}
 
       {page === "tickets" && <div className='profile__tickets'>
         {tickets.map(({ date, price, description, title, _id }) => <TicketItem id={_id} key={_id} title={title} text={description} price={price} date={date} />)}
